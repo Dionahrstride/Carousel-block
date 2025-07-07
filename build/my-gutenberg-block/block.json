@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/my-carousel-block",
+  "version": "0.1.0",
+  "title": "Carousel Block",
+  "category": "widgets",
+  "icon": "images-alt2",
+  "description": "A customizable carousel block with slides including images, headings, subheadings, span texts and links.",
+  "textdomain": "my-carousel-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css",
+  "attributes": {
+    "slideWidth": {
+      "type": "string",
+      "default": "250px"
+    },
+    "slideHeight": {
+      "type": "string",
+      "default": "350px"
+    },
+    "slideGap": {
+      "type": "string",
+      "default": "16px"
+    },
+    "minSlidesVisible": {
+      "type": "number",
+      "default": 1.25
+    },
+    "dragScrollMultiplier": {
+      "type": "number",
+      "default": 1
+    },
+    "wheelScrollSpeed": {
+      "type": "number",
+      "default": 30
+    },
+    "slides": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "number"
+          },
+          "heading": {
+            "type": "string",
+            "default": ""
+          },
+          "subheading": {
+            "type": "string",
+            "default": ""
+          },
+          "spanText": {
+            "type": "string",
+            "default": ""
+          },
+          "imageSrc": {
+            "type": "string",
+            "default": ""
+          },
+          "headingColor": {
+            "type": "string",
+            "default": "#000000"
+          },
+          "subheadingColor": {
+            "type": "string",
+            "default": "#333333"
+          },
+          "spanTextColor": {
+            "type": "string",
+            "default": "#555555"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "default": "#ffffff"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-create-block-my-gutenberg-block {
+	border: 1px dotted #f00;
+}
+.carousel-container {
+  scroll-behavior: smooth;
+}
+.carousel-slide {
+  transition: transform 0.3s ease;
+}
+.carousel-slide:hover {
+  transform: scale(1.03);
+}
+
