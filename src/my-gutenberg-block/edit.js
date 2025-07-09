@@ -2,15 +2,15 @@ import {
 	useBlockProps,
 	InspectorControls,
 	MediaUpload,
+	ColorPalette,
 } from "@wordpress/block-editor";
 import {
 	PanelBody,
 	TextControl,
 	Button,
-	ColorPicker,
 	RangeControl,
 } from "@wordpress/components";
-import { useState } from "@wordpress/element";
+import { useEffect } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
 	const {
@@ -22,6 +22,24 @@ export default function Edit({ attributes, setAttributes }) {
 		wheelScrollSpeed,
 		slides,
 	} = attributes;
+
+	// Ensure at least one slide exists on first render
+	useEffect(() => {
+		if (!slides || !Array.isArray(slides) || slides.length === 0) {
+			const initialSlide = {
+				index: 1,
+				heading: "Heading 1",
+				subheading: "Subheading 1",
+				spanText: "Span 1",
+				imageSrc: "",
+				headingColor: "#000000",
+				subheadingColor: "#333333",
+				spanTextColor: "#555555",
+				backgroundColor: "#ffffff",
+			};
+			setAttributes({ slides: [initialSlide] });
+		}
+	}, []);
 
 	const updateSlide = (index, field, value) => {
 		const updatedSlides = [...slides];
@@ -114,12 +132,9 @@ export default function Edit({ attributes, setAttributes }) {
 						value={slide.heading}
 						onChange={(val) => updateSlide(index, "heading", val)}
 					/>
-					<ColorPicker
-						color={slide.headingColor}
-						onChangeComplete={(color) =>
-							updateSlide(index, "headingColor", color.hex)
-						}
-						disableAlpha
+					<ColorPalette
+						value={slide.headingColor}
+						onChange={(color) => updateSlide(index, "headingColor", color)}
 					/>
 
 					<TextControl
@@ -127,12 +142,9 @@ export default function Edit({ attributes, setAttributes }) {
 						value={slide.subheading}
 						onChange={(val) => updateSlide(index, "subheading", val)}
 					/>
-					<ColorPicker
-						color={slide.subheadingColor}
-						onChangeComplete={(color) =>
-							updateSlide(index, "subheadingColor", color.hex)
-						}
-						disableAlpha
+					<ColorPalette
+						value={slide.subheadingColor}
+						onChange={(color) => updateSlide(index, "subheadingColor", color)}
 					/>
 
 					<TextControl
@@ -140,12 +152,17 @@ export default function Edit({ attributes, setAttributes }) {
 						value={slide.spanText}
 						onChange={(val) => updateSlide(index, "spanText", val)}
 					/>
-					<ColorPicker
-						color={slide.spanTextColor}
-						onChangeComplete={(color) =>
-							updateSlide(index, "spanTextColor", color.hex)
-						}
-						disableAlpha
+					<ColorPalette
+						value={slide.spanTextColor}
+						onChange={(color) => updateSlide(index, "spanTextColor", color)}
+					/>
+
+					<p style={{ marginTop: "12px", fontWeight: "bold" }}>
+						Background Color
+					</p>
+					<ColorPalette
+						value={slide.backgroundColor}
+						onChange={(color) => updateSlide(index, "backgroundColor", color)}
 					/>
 
 					<MediaUpload
@@ -170,17 +187,6 @@ export default function Edit({ attributes, setAttributes }) {
 							}}
 						/>
 					)}
-
-					<p style={{ marginTop: "12px", fontWeight: "bold" }}>
-						Background Color
-					</p>
-					<ColorPicker
-						color={slide.backgroundColor}
-						onChangeComplete={(color) =>
-							updateSlide(index, "backgroundColor", color.hex)
-						}
-						disableAlpha
-					/>
 
 					<Button
 						isDestructive

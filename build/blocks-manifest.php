@@ -10,10 +10,11 @@ return array(
 		'category' => 'widgets',
 		'icon' => 'images-alt2',
 		'description' => 'A customizable carousel block with slides including images, headings, subheadings, span texts and links.',
-		'textdomain' => 'my-carousel-block',
+		'textdomain' => ' my-carousel-block',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./editor.css',
 		'style' => 'file:./style.css',
+		'viewScript' => 'file:./view.js',
 		'attributes' => array(
 			'slideWidth' => array(
 				'type' => 'string',
